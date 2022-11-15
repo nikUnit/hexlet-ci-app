@@ -13,17 +13,21 @@ jobs:
       # Устанавливаем Node.js
       - uses: actions/setup-node@v2
         with:
-          cache: 'npm'
+          cache: "npm"
       # Ставим зависимости
       - run: make install
       # Устанавливаем проект
       - run: make setup
-      - uses: actions/checkout@v3
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/node@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       # Запускаем тесты
       - run: make test
       # Запускаем линтер
       - run: make lint
+
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
