@@ -11,9 +11,9 @@ jobs:
       # Клонируем репозиторий
       - uses: actions/checkout@v2
       # Устанавливаем Node.js
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2
       # Ставим зависимости
-      - run: npm install
+      - run: make install
       # Устанавливаем проект
       - run: make setup
       # Запускаем проект
