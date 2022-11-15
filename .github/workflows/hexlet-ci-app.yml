@@ -16,8 +16,6 @@ jobs:
       - run: make install
       # Устанавливаем проект
       - run: make setup
-      # Запускаем проект
-      - run: make start
       # Запускаем тесты
       - run: make test
       # Запускаем линтер
