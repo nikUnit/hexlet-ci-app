@@ -18,6 +18,11 @@ jobs:
       - run: make install
       # Устанавливаем проект
       - run: make setup
+      - uses: actions/checkout@master
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       # Запускаем тесты
       - run: make test
       # Запускаем линтер
